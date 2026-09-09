@@ -6,7 +6,7 @@
 
 ```bash
 uv sync --locked
-uv run --locked pre-commit install
+uv run --locked python -X utf8 -m pre_commit install
 uv run --locked ruff check .
 uv run --locked ruff format --check .
 uv run --locked mypy
@@ -21,6 +21,10 @@ uv run --locked pytest
 Pre-commit запускает ruff, проверку форматирования и mypy из того же окружения.
 Полный pytest запускается после этапа и в CI. Тесты изолированы от локального
 `.env` и переменных `DEMON_PLUS_*` разработчика.
+
+При установке hook включаем `-X utf8`: на Windows это сохраняет путь к Python
+с кириллицей в кодировке, которую понимает Git. После установки можно выполнять
+обычный `git commit` без ручной активации окружения; `uv` должен быть доступен в PATH.
 
 ## Реализованная структура
 
