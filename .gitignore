@@ -1,0 +1,49 @@
+# Python and tools
+__pycache__/
+*.py[cod]
+.venv/
+venv/
+.pytest_cache/
+.ruff_cache/
+.mypy_cache/
+.cache/
+.coverage
+.coverage.*
+htmlcov/
+coverage.xml
+build/
+dist/
+*.egg-info/
+.ipynb_checkpoints/
+
+# Local configuration and secrets
+.env
+.env.*
+!.env.example
+.streamlit/
+*.pem
+*.key
+
+# Datasets, models, experiments, reports and local databases
+/data/
+/artifacts/
+/mlruns/
+/mlartifacts/
+/reports/
+*.db
+*.db-*
+*.sqlite
+*.sqlite-*
+*.sqlite3
+*.sqlite3-*
+*.cbm
+*.pkl
+*.joblib
+catboost_info/
+*.log
+
+# Editors and OS
+.idea/
+.vscode/
+.DS_Store
+Thumbs.db
