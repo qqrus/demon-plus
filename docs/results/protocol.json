@@ -1,0 +1,46 @@
+{
+  "analysis_start": "2017-01-05",
+  "validation_cutoffs": [
+    "2018-03-31",
+    "2018-04-30",
+    "2018-05-31"
+  ],
+  "holdout_cutoff": "2018-06-30",
+  "holdout_end": "2018-07-30",
+  "holdout_scored": false,
+  "forecast_horizons": [
+    7,
+    14,
+    30
+  ],
+  "top_categories": 10,
+  "min_active_days": 60,
+  "category_selection_cutoff": "2018-03-31",
+  "categories": [
+    "cama_mesa_banho",
+    "esporte_lazer",
+    "moveis_decoracao",
+    "beleza_saude",
+    "informatica_acessorios",
+    "utilidades_domesticas",
+    "relogios_presentes",
+    "telefonia",
+    "ferramentas_jardim",
+    "brinquedos"
+  ],
+  "model_selection_metric": "pooled daily WAPE at horizon 30 on validation only",
+  "source_code_sha256": "3ef4501ed3de85279e259d517069573b1af543d9ca998369ad7cf2f79cba7053",
+  "python": "3.12.13",
+  "packages": {
+    "demon-plus": "0.1.0",
+    "pandas": "2.3.3",
+    "numpy": "2.5.3",
+    "scikit-learn": "1.9.1"
+  },
+  "input_sha256": {
+    "olist_orders_dataset.csv": "8df58ef3d2d7e9944010f7beecd9b75367f5588ec6e3c91cec19ae3345ef9ecf",
+    "olist_order_items_dataset.csv": "0bc4d068c4fe38cbb01bd90e8746e3c613fe7b4baef75fab7b0e329701c3e279",
+    "olist_products_dataset.csv": "3e6569628a17fbc75fd206ee357b59e20364b9afa90f5b6cd5b4d624c58aa9cc"
+  },
+  "zero_fill_assumption": "Missing category-day means zero within the accepted store window."
+}
