@@ -26,6 +26,11 @@ def test_dotenv_loading_and_environment_precedence(monkeypatch: pytest.MonkeyPat
         "DEMON_PLUS_DATA_DIR=\n",
         "DEMON_PLUS_ARTIFACTS_DIR=\n",
         "DEMON_PLUS_LOG_LEVL=INFO\n",
+        "DEMON_PLUS_VALIDATION_CUTOFFS=[]\n",
+        'DEMON_PLUS_VALIDATION_CUTOFFS=["2018-03-31","2018-04-01"]\n',
+        'DEMON_PLUS_VALIDATION_CUTOFFS=["2018-04-30","2018-03-31"]\n',
+        "DEMON_PLUS_HOLDOUT_CUTOFF=2018-06-01\n",
+        "DEMON_PLUS_TOP_CATEGORIES=0\n",
     ],
 )
 def test_invalid_dotenv_is_rejected(contents: str) -> None:

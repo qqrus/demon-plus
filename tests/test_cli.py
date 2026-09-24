@@ -44,3 +44,19 @@ def test_warning_level_suppresses_info(
     captured = capsys.readouterr()
     assert json.loads(captured.out)["status"] == "ok"
     assert captured.err == ""
+
+
+def test_malformed_cutoff_configuration_is_handled(capsys: pytest.CaptureFixture[str]) -> None:
+    Path(".env").write_text("DEMON_PLUS_VALIDATION_CUTOFFS=not-json\n", encoding="utf-8")
+    assert main(["check"]) == 2
+    captured = capsys.readouterr()
+    assert "not-json" not in captured.err
+    assert json.loads(captured.err)["event"] == "configuration_invalid"
+
+
+def test_missing_dataset_is_an_actionable_error(capsys: pytest.CaptureFixture[str]) -> None:
+    assert main(["baseline"]) == 2
+    captured = capsys.readouterr()
+    event = json.loads(captured.err)
+    assert event["event"] == "data_invalid"
+    assert "fetch-data" in event["message"]
