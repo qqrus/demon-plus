@@ -60,7 +60,7 @@ def score_predictions(predictions: pd.DataFrame) -> EvaluationReport:
     aggregate: list[AggregateScore] = []
     per_category: list[dict[str, object]] = []
     per_origin: list[dict[str, object]] = []
-    for model in BASELINES:
+    for model in sorted(predictions["model"].unique()):
         for horizon in HORIZONS:
             frame = predictions.loc[
                 (predictions["model"] == model) & (predictions["step"] <= horizon)

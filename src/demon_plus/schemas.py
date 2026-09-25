@@ -20,5 +20,5 @@ class ArtifactResult(BaseModel):
 
     model_config = ConfigDict(extra="forbid", frozen=True)
     status: Literal["ok"] = "ok"
-    command: Literal["fetch-data", "baseline"]
+    command: Literal["fetch-data", "baseline", "train", "evaluate-model"]
     artifact_path: str

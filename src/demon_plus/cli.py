@@ -1,6 +1,7 @@
 """Small command-line entry point for the first milestone."""
 
 import argparse
+import json
 from collections.abc import Sequence
 from importlib.metadata import version
 
@@ -17,7 +18,9 @@ from demon_plus.schemas import ArtifactResult, CheckResult
 def main(argv: Sequence[str] | None = None) -> int:
     """Validate configuration; exit 2 on expected configuration errors."""
     parser = argparse.ArgumentParser(description="Demon Plus local tools")
-    parser.add_argument("command", choices=["check", "fetch-data", "baseline"])
+    parser.add_argument(
+        "command", choices=["check", "fetch-data", "baseline", "train", "evaluate-model"]
+    )
     args = parser.parse_args(argv)
 
     configure_logging("INFO")
@@ -33,18 +36,31 @@ def main(argv: Sequence[str] | None = None) -> int:
         return 2
 
     configure_logging(settings.log_level)
-    if args.command in ("fetch-data", "baseline"):
+    if args.command != "check":
         try:
             if args.command == "fetch-data":
                 from demon_plus.data.download import fetch_olist
 
                 artifact = fetch_olist(settings.data_dir)
-            else:
+            elif args.command == "baseline":
                 from demon_plus.evaluation.run import run_baselines
 
                 artifact = run_baselines(settings)
+            else:
+                from demon_plus.evaluation.train import evaluate_holdout, train_candidates
+
+                artifact = (
+                    train_candidates(settings)
+                    if args.command == "train"
+                    else evaluate_holdout(settings)
+                )
         except DataError as exc:
             logger.error("data_invalid", message=str(exc))
+            return 2
+        except (ValidationError, json.JSONDecodeError):
+            logger.error(
+                "artifact_invalid", message="Invalid saved metadata; check the training artifacts."
+            )
             return 2
         except OSError:
             logger.error(
