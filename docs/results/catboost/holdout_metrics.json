@@ -1,0 +1,935 @@
+{
+  "aggregate": [
+    {
+      "model": "catboost_d4",
+      "horizon": 7,
+      "n_daily": 70,
+      "daily": {
+        "mae": 4.172457288384836,
+        "rmse": 5.391202987876786,
+        "wape_pct": 31.338198517911852
+      },
+      "horizon_totals": {
+        "mae": 8.344299727275459,
+        "rmse": 10.65926474159538,
+        "wape_pct": 8.953111295359934
+      }
+    },
+    {
+      "model": "catboost_d4",
+      "horizon": 14,
+      "n_daily": 140,
+      "daily": {
+        "mae": 5.245587666159986,
+        "rmse": 6.568104368614312,
+        "wape_pct": 46.627445921422094
+      },
+      "horizon_totals": {
+        "mae": 40.90173712545313,
+        "rmse": 50.61539336465203,
+        "wape_pct": 25.969356905049608
+      }
+    },
+    {
+      "model": "catboost_d4",
+      "horizon": 30,
+      "n_daily": 300,
+      "daily": {
+        "mae": 5.102232202774314,
+        "rmse": 6.766337105419233,
+        "wape_pct": 36.73313320931831
+      },
+      "horizon_totals": {
+        "mae": 42.46249239132823,
+        "rmse": 61.04076779083595,
+        "wape_pct": 10.190182959282033
+      }
+    },
+    {
+      "model": "mean_28",
+      "horizon": 7,
+      "n_daily": 70,
+      "daily": {
+        "mae": 5.126020408163265,
+        "rmse": 6.814029270406694,
+        "wape_pct": 38.500153280196194
+      },
+      "horizon_totals": {
+        "mae": 16.425,
+        "rmse": 22.416929986061874,
+        "wape_pct": 17.623390557939913
+      }
+    },
+    {
+      "model": "mean_28",
+      "horizon": 14,
+      "n_daily": 140,
+      "daily": {
+        "mae": 6.057142857142857,
+        "rmse": 7.720128409104425,
+        "wape_pct": 53.84126984126985
+      },
+      "horizon_totals": {
+        "mae": 59.05,
+        "rmse": 73.56612671603692,
+        "wape_pct": 37.492063492063494
+      }
+    },
+    {
+      "model": "mean_28",
+      "horizon": 30,
+      "n_daily": 300,
+      "daily": {
+        "mae": 5.432142857142858,
+        "rmse": 7.116666865809553,
+        "wape_pct": 39.108299907435985
+      },
+      "horizon_totals": {
+        "mae": 54.778571428571425,
+        "rmse": 83.61909202461126,
+        "wape_pct": 13.145805478418868
+      }
+    },
+    {
+      "model": "seasonal_naive_7",
+      "horizon": 7,
+      "n_daily": 70,
+      "daily": {
+        "mae": 6.128571428571429,
+        "rmse": 8.08437646681195,
+        "wape_pct": 46.03004291845493
+      },
+      "horizon_totals": {
+        "mae": 15.3,
+        "rmse": 20.46216019876689,
+        "wape_pct": 16.416309012875534
+      }
+    },
+    {
+      "model": "seasonal_naive_7",
+      "horizon": 14,
+      "n_daily": 140,
+      "daily": {
+        "mae": 7.235714285714286,
+        "rmse": 9.70382840503096,
+        "wape_pct": 64.31746031746032
+      },
+      "horizon_totals": {
+        "mae": 59.7,
+        "rmse": 72.99931506527989,
+        "wape_pct": 37.904761904761905
+      }
+    },
+    {
+      "model": "seasonal_naive_7",
+      "horizon": 30,
+      "n_daily": 300,
+      "daily": {
+        "mae": 6.5633333333333335,
+        "rmse": 8.877499647986475,
+        "wape_pct": 47.252219822414204
+      },
+      "horizon_totals": {
+        "mae": 70.5,
+        "rmse": 86.26297003929322,
+        "wape_pct": 16.918646508279338
+      }
+    }
+  ],
+  "per_category": [
+    {
+      "model": "catboost_d4",
+      "horizon": 7,
+      "category": "beleza_saude",
+      "mae": 7.074048490025604,
+      "rmse": 8.202001893850733,
+      "wape_pct": 29.128434958928963
+    },
+    {
+      "model": "catboost_d4",
+      "horizon": 7,
+      "category": "brinquedos",
+      "mae": 1.8978106098068923,
+      "rmse": 2.214593312961249,
+      "wape_pct": 36.901872968467345
+    },
+    {
+      "model": "catboost_d4",
+      "horizon": 7,
+      "category": "cama_mesa_banho",
+      "mae": 6.559507768111878,
+      "rmse": 8.333840219502095,
+      "wape_pct": 33.27286549042257
+    },
+    {
+      "model": "catboost_d4",
+      "horizon": 7,
+      "category": "esporte_lazer",
+      "mae": 3.370865795973786,
+      "rmse": 3.6326611342494335,
+      "wape_pct": 22.472438639825242
+    },
+    {
+      "model": "catboost_d4",
+      "horizon": 7,
+      "category": "ferramentas_jardim",
+      "mae": 3.7438063267597737,
+      "rmse": 4.225368470837989,
+      "wape_pct": 58.236987305152034
+    },
+    {
+      "model": "catboost_d4",
+      "horizon": 7,
+      "category": "informatica_acessorios",
+      "mae": 2.431188378629638,
+      "rmse": 2.8019448860335805,
+      "wape_pct": 20.02155135342055
+    },
+    {
+      "model": "catboost_d4",
+      "horizon": 7,
+      "category": "moveis_decoracao",
+      "mae": 4.5634010625732495,
+      "rmse": 6.196026868437432,
+      "wape_pct": 32.59572187552321
+    },
+    {
+      "model": "catboost_d4",
+      "horizon": 7,
+      "category": "relogios_presentes",
+      "mae": 2.4690821421688764,
+      "rmse": 3.0695858730045305,
+      "wape_pct": 18.003723953314722
+    },
+    {
+      "model": "catboost_d4",
+      "horizon": 7,
+      "category": "telefonia",
+      "mae": 3.2386291031357666,
+      "rmse": 3.9074737859304776,
+      "wape_pct": 70.84501163109489
+    },
+    {
+      "model": "catboost_d4",
+      "horizon": 7,
+      "category": "utilidades_domesticas",
+      "mae": 6.376233206662884,
+      "rmse": 6.858441995328984,
+      "wape_pct": 35.14459247766945
+    },
+    {
+      "model": "catboost_d4",
+      "horizon": 14,
+      "category": "beleza_saude",
+      "mae": 6.620138683426043,
+      "rmse": 7.780988668394238,
+      "wape_pct": 30.189557513994984
+    },
+    {
+      "model": "catboost_d4",
+      "horizon": 14,
+      "category": "brinquedos",
+      "mae": 2.7669850072618787,
+      "rmse": 3.1597207152042572,
+      "wape_pct": 67.96103526608123
+    },
+    {
+      "model": "catboost_d4",
+      "horizon": 14,
+      "category": "cama_mesa_banho",
+      "mae": 9.394315197474663,
+      "rmse": 11.083773354253843,
+      "wape_pct": 62.628767983164416
+    },
+    {
+      "model": "catboost_d4",
+      "horizon": 14,
+      "category": "esporte_lazer",
+      "mae": 4.9248664261950355,
+      "rmse": 5.657531119950529,
+      "wape_pct": 38.73490447569129
+    },
+    {
+      "model": "catboost_d4",
+      "horizon": 14,
+      "category": "ferramentas_jardim",
+      "mae": 3.3426045453524993,
+      "rmse": 4.0637283974118095,
+      "wape_pct": 67.82096178976084
+    },
+    {
+      "model": "catboost_d4",
+      "horizon": 14,
+      "category": "informatica_acessorios",
+      "mae": 3.909887091396114,
+      "rmse": 4.739217591478048,
+      "wape_pct": 36.01211794706947
+    },
+    {
+      "model": "catboost_d4",
+      "horizon": 14,
+      "category": "moveis_decoracao",
+      "mae": 7.092806408260968,
+      "rmse": 8.325747708852084,
+      "wape_pct": 70.92806408260968
+    },
+    {
+      "model": "catboost_d4",
+      "horizon": 14,
+      "category": "relogios_presentes",
+      "mae": 3.427135916078593,
+      "rmse": 4.078387774046888,
+      "wape_pct": 23.635420110886844
+    },
+    {
+      "model": "catboost_d4",
+      "horizon": 14,
+      "category": "telefonia",
+      "mae": 3.768235808127623,
+      "rmse": 4.408460909465602,
+      "wape_pct": 83.73857351394717
+    },
+    {
+      "model": "catboost_d4",
+      "horizon": 14,
+      "category": "utilidades_domesticas",
+      "mae": 7.208901578026437,
+      "rmse": 7.85205189540379,
+      "wape_pct": 51.49215412876027
+    },
+    {
+      "model": "catboost_d4",
+      "horizon": 30,
+      "category": "beleza_saude",
+      "mae": 8.616170443417698,
+      "rmse": 10.391964635303346,
+      "wape_pct": 34.191152553244834
+    },
+    {
+      "model": "catboost_d4",
+      "horizon": 30,
+      "category": "brinquedos",
+      "mae": 2.193695889805654,
+      "rmse": 2.7392732270370024,
+      "wape_pct": 43.29662940405896
+    },
+    {
+      "model": "catboost_d4",
+      "horizon": 30,
+      "category": "cama_mesa_banho",
+      "mae": 7.496096857040076,
+      "rmse": 9.500344915135598,
+      "wape_pct": 37.922918332411854
+    },
+    {
+      "model": "catboost_d4",
+      "horizon": 30,
+      "category": "esporte_lazer",
+      "mae": 4.697063679312605,
+      "rmse": 5.561682137885598,
+      "wape_pct": 31.736916752112197
+    },
+    {
+      "model": "catboost_d4",
+      "horizon": 30,
+      "category": "ferramentas_jardim",
+      "mae": 2.983471820746714,
+      "rmse": 3.6969596042764623,
+      "wape_pct": 52.64950271905966
+    },
+    {
+      "model": "catboost_d4",
+      "horizon": 30,
+      "category": "informatica_acessorios",
+      "mae": 4.245676576674053,
+      "rmse": 5.01746348043013,
+      "wape_pct": 31.763166409032817
+    },
+    {
+      "model": "catboost_d4",
+      "horizon": 30,
+      "category": "moveis_decoracao",
+      "mae": 6.260748692403527,
+      "rmse": 7.690702200522832,
+      "wape_pct": 45.92236204696964
+    },
+    {
+      "model": "catboost_d4",
+      "horizon": 30,
+      "category": "relogios_presentes",
+      "mae": 4.53705930120906,
+      "rmse": 6.160956279592522,
+      "wape_pct": 27.16801976771892
+    },
+    {
+      "model": "catboost_d4",
+      "horizon": 30,
+      "category": "telefonia",
+      "mae": 3.115383049280775,
+      "rmse": 4.017861338012769,
+      "wape_pct": 44.29454572437121
+    },
+    {
+      "model": "catboost_d4",
+      "horizon": 30,
+      "category": "utilidades_domesticas",
+      "mae": 6.8769557178529706,
+      "rmse": 8.310103928217664,
+      "wape_pct": 38.92616444067719
+    },
+    {
+      "model": "mean_28",
+      "horizon": 7,
+      "category": "beleza_saude",
+      "mae": 9.494897959183675,
+      "rmse": 11.39330496208996,
+      "wape_pct": 39.09663865546219
+    },
+    {
+      "model": "mean_28",
+      "horizon": 7,
+      "category": "brinquedos",
+      "mae": 2.137755102040816,
+      "rmse": 2.466355238659935,
+      "wape_pct": 41.567460317460316
+    },
+    {
+      "model": "mean_28",
+      "horizon": 7,
+      "category": "cama_mesa_banho",
+      "mae": 9.632653061224488,
+      "rmse": 11.261275528580775,
+      "wape_pct": 48.86128364389233
+    },
+    {
+      "model": "mean_28",
+      "horizon": 7,
+      "category": "esporte_lazer",
+      "mae": 3.9285714285714284,
+      "rmse": 4.5,
+      "wape_pct": 26.190476190476193
+    },
+    {
+      "model": "mean_28",
+      "horizon": 7,
+      "category": "ferramentas_jardim",
+      "mae": 3.6377551020408165,
+      "rmse": 3.812071320830978,
+      "wape_pct": 56.58730158730159
+    },
+    {
+      "model": "mean_28",
+      "horizon": 7,
+      "category": "informatica_acessorios",
+      "mae": 3.107142857142857,
+      "rmse": 3.962998504019039,
+      "wape_pct": 25.588235294117645
+    },
+    {
+      "model": "mean_28",
+      "horizon": 7,
+      "category": "moveis_decoracao",
+      "mae": 5.780612244897959,
+      "rmse": 6.840101592514425,
+      "wape_pct": 41.29008746355685
+    },
+    {
+      "model": "mean_28",
+      "horizon": 7,
+      "category": "relogios_presentes",
+      "mae": 2.8367346938775513,
+      "rmse": 4.433177328337972,
+      "wape_pct": 20.68452380952381
+    },
+    {
+      "model": "mean_28",
+      "horizon": 7,
+      "category": "telefonia",
+      "mae": 3.7704081632653064,
+      "rmse": 4.444814681291044,
+      "wape_pct": 82.47767857142858
+    },
+    {
+      "model": "mean_28",
+      "horizon": 7,
+      "category": "utilidades_domesticas",
+      "mae": 6.933673469387755,
+      "rmse": 8.057272668660461,
+      "wape_pct": 38.217097862767154
+    },
+    {
+      "model": "mean_28",
+      "horizon": 14,
+      "category": "beleza_saude",
+      "mae": 10.19387755102041,
+      "rmse": 11.859132793431606,
+      "wape_pct": 46.486738017682654
+    },
+    {
+      "model": "mean_28",
+      "horizon": 14,
+      "category": "brinquedos",
+      "mae": 2.7295918367346927,
+      "rmse": 3.114523254374707,
+      "wape_pct": 67.0426065162907
+    },
+    {
+      "model": "mean_28",
+      "horizon": 14,
+      "category": "cama_mesa_banho",
+      "mae": 12.816326530612242,
+      "rmse": 14.084294335847128,
+      "wape_pct": 85.44217687074827
+    },
+    {
+      "model": "mean_28",
+      "horizon": 14,
+      "category": "esporte_lazer",
+      "mae": 4.571428571428571,
+      "rmse": 5.220153254455275,
+      "wape_pct": 35.95505617977528
+    },
+    {
+      "model": "mean_28",
+      "horizon": 14,
+      "category": "ferramentas_jardim",
+      "mae": 3.3367346938775517,
+      "rmse": 3.7411460101669056,
+      "wape_pct": 67.70186335403729
+    },
+    {
+      "model": "mean_28",
+      "horizon": 14,
+      "category": "informatica_acessorios",
+      "mae": 4.428571428571429,
+      "rmse": 5.062996007447426,
+      "wape_pct": 40.78947368421053
+    },
+    {
+      "model": "mean_28",
+      "horizon": 14,
+      "category": "moveis_decoracao",
+      "mae": 6.658163265306124,
+      "rmse": 7.275290161826917,
+      "wape_pct": 66.58163265306123
+    },
+    {
+      "model": "mean_28",
+      "horizon": 14,
+      "category": "relogios_presentes",
+      "mae": 3.3367346938775504,
+      "rmse": 4.654381302184261,
+      "wape_pct": 23.01196340605207
+    },
+    {
+      "model": "mean_28",
+      "horizon": 14,
+      "category": "telefonia",
+      "mae": 4.1938775510204085,
+      "rmse": 4.663826273587394,
+      "wape_pct": 93.19727891156464
+    },
+    {
+      "model": "mean_28",
+      "horizon": 14,
+      "category": "utilidades_domesticas",
+      "mae": 8.30612244897959,
+      "rmse": 9.16911686486941,
+      "wape_pct": 59.32944606413992
+    },
+    {
+      "model": "mean_28",
+      "horizon": 30,
+      "category": "beleza_saude",
+      "mae": 9.185714285714287,
+      "rmse": 11.090808690756774,
+      "wape_pct": 36.451247165532884
+    },
+    {
+      "model": "mean_28",
+      "horizon": 30,
+      "category": "brinquedos",
+      "mae": 2.1714285714285713,
+      "rmse": 2.589076346215115,
+      "wape_pct": 42.857142857142854
+    },
+    {
+      "model": "mean_28",
+      "horizon": 30,
+      "category": "cama_mesa_banho",
+      "mae": 9.623809523809522,
+      "rmse": 11.234331492422353,
+      "wape_pct": 48.68706335822692
+    },
+    {
+      "model": "mean_28",
+      "horizon": 30,
+      "category": "esporte_lazer",
+      "mae": 4.7,
+      "rmse": 5.6964901474504455,
+      "wape_pct": 31.756756756756754
+    },
+    {
+      "model": "mean_28",
+      "horizon": 30,
+      "category": "ferramentas_jardim",
+      "mae": 3.0261904761904765,
+      "rmse": 3.576555843361078,
+      "wape_pct": 53.403361344537814
+    },
+    {
+      "model": "mean_28",
+      "horizon": 30,
+      "category": "informatica_acessorios",
+      "mae": 4.833333333333333,
+      "rmse": 5.411022700623854,
+      "wape_pct": 36.15960099750624
+    },
+    {
+      "model": "mean_28",
+      "horizon": 30,
+      "category": "moveis_decoracao",
+      "mae": 6.166666666666669,
+      "rmse": 7.486103906617933,
+      "wape_pct": 45.23227383863082
+    },
+    {
+      "model": "mean_28",
+      "horizon": 30,
+      "category": "relogios_presentes",
+      "mae": 4.109523809523809,
+      "rmse": 5.4760455467364375,
+      "wape_pct": 24.60792700313658
+    },
+    {
+      "model": "mean_28",
+      "horizon": 30,
+      "category": "telefonia",
+      "mae": 3.3309523809523807,
+      "rmse": 4.125280860362206,
+      "wape_pct": 47.3595125253893
+    },
+    {
+      "model": "mean_28",
+      "horizon": 30,
+      "category": "utilidades_domesticas",
+      "mae": 7.173809523809524,
+      "rmse": 8.542963648006262,
+      "wape_pct": 40.60646900269542
+    },
+    {
+      "model": "seasonal_naive_7",
+      "horizon": 7,
+      "category": "beleza_saude",
+      "mae": 10.0,
+      "rmse": 13.125765283811617,
+      "wape_pct": 41.17647058823529
+    },
+    {
+      "model": "seasonal_naive_7",
+      "horizon": 7,
+      "category": "brinquedos",
+      "mae": 1.7142857142857142,
+      "rmse": 1.927248223318863,
+      "wape_pct": 33.33333333333333
+    },
+    {
+      "model": "seasonal_naive_7",
+      "horizon": 7,
+      "category": "cama_mesa_banho",
+      "mae": 11.0,
+      "rmse": 12.54136014496491,
+      "wape_pct": 55.79710144927537
+    },
+    {
+      "model": "seasonal_naive_7",
+      "horizon": 7,
+      "category": "esporte_lazer",
+      "mae": 6.857142857142857,
+      "rmse": 8.0,
+      "wape_pct": 45.714285714285715
+    },
+    {
+      "model": "seasonal_naive_7",
+      "horizon": 7,
+      "category": "ferramentas_jardim",
+      "mae": 7.142857142857143,
+      "rmse": 8.668497975016038,
+      "wape_pct": 111.11111111111111
+    },
+    {
+      "model": "seasonal_naive_7",
+      "horizon": 7,
+      "category": "informatica_acessorios",
+      "mae": 5.285714285714286,
+      "rmse": 6.244997998398398,
+      "wape_pct": 43.529411764705884
+    },
+    {
+      "model": "seasonal_naive_7",
+      "horizon": 7,
+      "category": "moveis_decoracao",
+      "mae": 6.0,
+      "rmse": 7.483314773547883,
+      "wape_pct": 42.857142857142854
+    },
+    {
+      "model": "seasonal_naive_7",
+      "horizon": 7,
+      "category": "relogios_presentes",
+      "mae": 3.2857142857142856,
+      "rmse": 4.088310863215481,
+      "wape_pct": 23.958333333333336
+    },
+    {
+      "model": "seasonal_naive_7",
+      "horizon": 7,
+      "category": "telefonia",
+      "mae": 3.7142857142857144,
+      "rmse": 4.20883424647321,
+      "wape_pct": 81.25
+    },
+    {
+      "model": "seasonal_naive_7",
+      "horizon": 7,
+      "category": "utilidades_domesticas",
+      "mae": 6.285714285714286,
+      "rmse": 7.191264542087554,
+      "wape_pct": 34.645669291338585
+    },
+    {
+      "model": "seasonal_naive_7",
+      "horizon": 14,
+      "category": "beleza_saude",
+      "mae": 12.642857142857142,
+      "rmse": 15.930653291240578,
+      "wape_pct": 57.65472312703584
+    },
+    {
+      "model": "seasonal_naive_7",
+      "horizon": 14,
+      "category": "brinquedos",
+      "mae": 2.5,
+      "rmse": 3.035504194410825,
+      "wape_pct": 61.40350877192983
+    },
+    {
+      "model": "seasonal_naive_7",
+      "horizon": 14,
+      "category": "cama_mesa_banho",
+      "mae": 13.142857142857142,
+      "rmse": 15.487322004050373,
+      "wape_pct": 87.61904761904762
+    },
+    {
+      "model": "seasonal_naive_7",
+      "horizon": 14,
+      "category": "esporte_lazer",
+      "mae": 6.571428571428571,
+      "rmse": 7.690439333539869,
+      "wape_pct": 51.68539325842697
+    },
+    {
+      "model": "seasonal_naive_7",
+      "horizon": 14,
+      "category": "ferramentas_jardim",
+      "mae": 6.928571428571429,
+      "rmse": 9.05932826270406,
+      "wape_pct": 140.57971014492753
+    },
+    {
+      "model": "seasonal_naive_7",
+      "horizon": 14,
+      "category": "informatica_acessorios",
+      "mae": 6.0,
+      "rmse": 7.919235172305828,
+      "wape_pct": 55.26315789473685
+    },
+    {
+      "model": "seasonal_naive_7",
+      "horizon": 14,
+      "category": "moveis_decoracao",
+      "mae": 8.428571428571429,
+      "rmse": 10.14889156509222,
+      "wape_pct": 84.28571428571429
+    },
+    {
+      "model": "seasonal_naive_7",
+      "horizon": 14,
+      "category": "relogios_presentes",
+      "mae": 5.5,
+      "rmse": 6.508236539735081,
+      "wape_pct": 37.93103448275862
+    },
+    {
+      "model": "seasonal_naive_7",
+      "horizon": 14,
+      "category": "telefonia",
+      "mae": 2.9285714285714284,
+      "rmse": 3.6742346141747673,
+      "wape_pct": 65.07936507936508
+    },
+    {
+      "model": "seasonal_naive_7",
+      "horizon": 14,
+      "category": "utilidades_domesticas",
+      "mae": 7.714285714285714,
+      "rmse": 8.717797887081348,
+      "wape_pct": 55.10204081632652
+    },
+    {
+      "model": "seasonal_naive_7",
+      "horizon": 30,
+      "category": "beleza_saude",
+      "mae": 11.033333333333333,
+      "rmse": 14.311999627352334,
+      "wape_pct": 43.783068783068785
+    },
+    {
+      "model": "seasonal_naive_7",
+      "horizon": 30,
+      "category": "brinquedos",
+      "mae": 2.466666666666667,
+      "rmse": 3.119829055146024,
+      "wape_pct": 48.68421052631579
+    },
+    {
+      "model": "seasonal_naive_7",
+      "horizon": 30,
+      "category": "cama_mesa_banho",
+      "mae": 10.833333333333334,
+      "rmse": 13.437509689918986,
+      "wape_pct": 54.80607082630692
+    },
+    {
+      "model": "seasonal_naive_7",
+      "horizon": 30,
+      "category": "esporte_lazer",
+      "mae": 6.0,
+      "rmse": 7.32575365861197,
+      "wape_pct": 40.54054054054054
+    },
+    {
+      "model": "seasonal_naive_7",
+      "horizon": 30,
+      "category": "ferramentas_jardim",
+      "mae": 5.633333333333334,
+      "rmse": 7.556454194925025,
+      "wape_pct": 99.41176470588235
+    },
+    {
+      "model": "seasonal_naive_7",
+      "horizon": 30,
+      "category": "informatica_acessorios",
+      "mae": 5.566666666666666,
+      "rmse": 6.9737603438412865,
+      "wape_pct": 41.64588528678304
+    },
+    {
+      "model": "seasonal_naive_7",
+      "horizon": 30,
+      "category": "moveis_decoracao",
+      "mae": 7.133333333333334,
+      "rmse": 8.824209124146291,
+      "wape_pct": 52.32273838630807
+    },
+    {
+      "model": "seasonal_naive_7",
+      "horizon": 30,
+      "category": "relogios_presentes",
+      "mae": 6.033333333333333,
+      "rmse": 7.761013679496599,
+      "wape_pct": 36.12774451097805
+    },
+    {
+      "model": "seasonal_naive_7",
+      "horizon": 30,
+      "category": "telefonia",
+      "mae": 4.0,
+      "rmse": 4.953113498935123,
+      "wape_pct": 56.872037914691944
+    },
+    {
+      "model": "seasonal_naive_7",
+      "horizon": 30,
+      "category": "utilidades_domesticas",
+      "mae": 6.933333333333334,
+      "rmse": 8.422192905255336,
+      "wape_pct": 39.24528301886793
+    }
+  ],
+  "per_origin": [
+    {
+      "model": "catboost_d4",
+      "horizon": 7,
+      "origin": "2018-06-30 00:00:00",
+      "mae": 4.172457288384836,
+      "rmse": 5.391202987876786,
+      "wape_pct": 31.338198517911852
+    },
+    {
+      "model": "catboost_d4",
+      "horizon": 14,
+      "origin": "2018-06-30 00:00:00",
+      "mae": 5.245587666159986,
+      "rmse": 6.568104368614312,
+      "wape_pct": 46.627445921422094
+    },
+    {
+      "model": "catboost_d4",
+      "horizon": 30,
+      "origin": "2018-06-30 00:00:00",
+      "mae": 5.102232202774314,
+      "rmse": 6.766337105419233,
+      "wape_pct": 36.73313320931831
+    },
+    {
+      "model": "mean_28",
+      "horizon": 7,
+      "origin": "2018-06-30 00:00:00",
+      "mae": 5.126020408163265,
+      "rmse": 6.814029270406694,
+      "wape_pct": 38.500153280196194
+    },
+    {
+      "model": "mean_28",
+      "horizon": 14,
+      "origin": "2018-06-30 00:00:00",
+      "mae": 6.057142857142857,
+      "rmse": 7.720128409104425,
+      "wape_pct": 53.84126984126985
+    },
+    {
+      "model": "mean_28",
+      "horizon": 30,
+      "origin": "2018-06-30 00:00:00",
+      "mae": 5.432142857142858,
+      "rmse": 7.116666865809553,
+      "wape_pct": 39.108299907435985
+    },
+    {
+      "model": "seasonal_naive_7",
+      "horizon": 7,
+      "origin": "2018-06-30 00:00:00",
+      "mae": 6.128571428571429,
+      "rmse": 8.08437646681195,
+      "wape_pct": 46.03004291845493
+    },
+    {
+      "model": "seasonal_naive_7",
+      "horizon": 14,
+      "origin": "2018-06-30 00:00:00",
+      "mae": 7.235714285714286,
+      "rmse": 9.70382840503096,
+      "wape_pct": 64.31746031746032
+    },
+    {
+      "model": "seasonal_naive_7",
+      "horizon": 30,
+      "origin": "2018-06-30 00:00:00",
+      "mae": 6.5633333333333335,
+      "rmse": 8.877499647986475,
+      "wape_pct": 47.252219822414204
+    }
+  ]
+}

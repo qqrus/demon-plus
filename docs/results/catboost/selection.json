@@ -1,0 +1,76 @@
+{
+  "run_id": "09377e9534cc4ff1ae39b1ccafa4e87d",
+  "categories": [
+    "cama_mesa_banho",
+    "esporte_lazer",
+    "moveis_decoracao",
+    "beleza_saude",
+    "informatica_acessorios",
+    "utilidades_domesticas",
+    "relogios_presentes",
+    "telefonia",
+    "ferramentas_jardim",
+    "brinquedos"
+  ],
+  "analysis_start": "2017-01-05",
+  "holdout_cutoff": "2018-06-30",
+  "best_catboost": "catboost_d4",
+  "selected_model": "catboost_d4",
+  "selection_metric": "validation pooled daily WAPE, horizon=30",
+  "input_hashes": {
+    "olist_orders_dataset.csv": "8df58ef3d2d7e9944010f7beecd9b75367f5588ec6e3c91cec19ae3345ef9ecf",
+    "olist_order_items_dataset.csv": "0bc4d068c4fe38cbb01bd90e8746e3c613fe7b4baef75fab7b0e329701c3e279",
+    "olist_products_dataset.csv": "3e6569628a17fbc75fd206ee357b59e20364b9afa90f5b6cd5b4d624c58aa9cc"
+  },
+  "settings": {
+    "log_level": "INFO",
+    "data_dir": "data",
+    "artifacts_dir": "artifacts",
+    "analysis_start": "2017-01-05",
+    "validation_cutoffs": [
+      "2018-03-31",
+      "2018-04-30",
+      "2018-05-31"
+    ],
+    "holdout_cutoff": "2018-06-30",
+    "top_categories": 10,
+    "min_active_days": 60,
+    "catboost_iterations": 300,
+    "catboost_depths": [
+      4,
+      6
+    ],
+    "training_stride": 7,
+    "random_seed": 42,
+    "mlflow_db": "artifacts\\mlflow.db"
+  },
+  "package_versions": {
+    "catboost": "1.2.10",
+    "mlflow": "3.16.1",
+    "numpy": "2.3.5",
+    "pandas": "2.3.3",
+    "scikit-learn": "1.9.1"
+  },
+  "source_hashes": {
+    "cli.py": "2afa6f2debf974f8d409205a5a45c434ec448ec4d4642088113b6049b0bcae8b",
+    "config.py": "c8cffca5fdde5d8a5a0c50e7dd0107d67afee4c55b93d88f90f9eac7f4b8b957",
+    "errors.py": "58108975d93508d6717b7e7597e7c65cdef31f6adbf10377a7b8694992e72fef",
+    "logging.py": "61d883418d089110bb05810d6d7b8538bf49a622f881478d5b7a1a614177ec1c",
+    "schemas.py": "98b91664e8a984af4b5d7056fbdf45e4c8d0de01f388f44942d985ad0eb171ae",
+    "__init__.py": "72b1059cbe0feff9c2facced28e3195104d0bc480d0cc46ee19353d52c572ef8",
+    "data\\download.py": "b843e7471d473ce4891b81040b03cfa4f866e39637f106fd23c4281d254cd1b4",
+    "data\\olist.py": "07a21536e78e8a505483400b55150a888fd59fb576638bb4849a57a82159bf61",
+    "data\\__init__.py": "8dd8b9295eaf1059df859b3eeb8b80bab91c7caeab9e2768bda7f33f897a93c7",
+    "evaluation\\backtest.py": "97f14ed322eb1794ff95e4f48b4c41953654cce36e2bc40e35e7f124b298d5f2",
+    "evaluation\\metrics.py": "f1d33b039236451fc05e62017f8dc33f63170c0e3c0751061fa90fd11e635fbc",
+    "evaluation\\model_report.py": "c8e5202c05352f8401df00d68c9c4bbf5854d0be6cdb611bd3d11229fc044aed",
+    "evaluation\\run.py": "f7b34f9518e77e4e1afc29bd2bb4bae4d59830dbc1a9168188266005f02a6508",
+    "evaluation\\train.py": "b3989467f62ecd02c78a651283ffa544dbd8577ae4de45c5892a2dc8dc6dc4dc",
+    "evaluation\\__init__.py": "0ff591e6e793e0f00b93b2ebf9f45931fdcd7c4250d0d8d1f13cd6af0afed9e6",
+    "features\\demand.py": "c5d11a147e3661f128cbe97c9861f39f15f302538d34d170821a8ce74bb5dc0e",
+    "features\\__init__.py": "eebc02836d05f906349215f7680802040ff466cf5e33d89e30db16b4a3d3493b",
+    "models\\baseline.py": "79c254dbe635577a837822835415eecf61cba725b24a806538796e6ec6e9cf61",
+    "models\\catboost.py": "15471e868086494729a99c8a549f248bd4f1edfaf3d5d0101e5a610dd8e41161",
+    "models\\__init__.py": "77aa7875a5b8531e3b4bc452159ea04000140b2d5072745625feaa462e123403"
+  }
+}
