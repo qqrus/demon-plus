@@ -9,7 +9,9 @@ description = "Demand forecasting and model quality monitoring for a small onlin
 readme = "README.md"
 requires-python = ">=3.12,<3.13"
 dependencies = [
+    "catboost>=1.2,<2",
     "matplotlib>=3.9,<4",
+    "mlflow>=3,<4",
     "numpy>=2,<3",
     "pandas>=2.2,<3",
     "pydantic>=2.10,<3",
@@ -56,5 +58,9 @@ init_typed = true
 warn_required_dynamic_aliases = true
 
 [[tool.mypy.overrides]]
-module = ["sklearn.*"]
+module = ["sklearn.*", "catboost.*"]
 ignore_missing_imports = true
+
+[tool.uv]
+# pandas 2.3 and MLflow currently emit deprecations with newer transitive versions.
+constraint-dependencies = ["numpy<2.4", "sqlalchemy<2.1"]

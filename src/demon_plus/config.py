@@ -30,10 +30,19 @@ class Settings(BaseSettings):
     holdout_cutoff: date = date(2018, 6, 30)
     top_categories: int = Field(default=10, ge=1)
     min_active_days: int = Field(default=60, ge=1)
+    catboost_iterations: int = Field(default=300, ge=1)
+    catboost_depths: tuple[int, ...] = (4, 6)
+    training_stride: int = Field(default=7, ge=1)
+    random_seed: int = 42
+    mlflow_db: Path = Path("artifacts/mlflow.db")
 
     @model_validator(mode="after")
     def validate_evaluation_dates(self) -> "Settings":
         cutoffs = self.validation_cutoffs
+        if not self.catboost_depths or any(not 1 <= depth <= 10 for depth in self.catboost_depths):
+            raise ValueError("CatBoost depths must be a non-empty list of values in 1..10")
+        if len(set(self.catboost_depths)) != len(self.catboost_depths):
+            raise ValueError("CatBoost depths must be unique")
         if not cutoffs or list(cutoffs) != sorted(set(cutoffs)):
             raise ValueError("Validation cutoffs must be non-empty, unique and increasing")
         if cutoffs[0] < self.analysis_start + timedelta(days=27):
