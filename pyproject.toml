@@ -10,14 +10,21 @@ readme = "README.md"
 requires-python = ">=3.12,<3.13"
 dependencies = [
     "catboost>=1.2,<2",
+    "fastapi>=0.115,<1",
+    "httpx>=0.28,<1",
     "matplotlib>=3.9,<4",
     "mlflow>=3,<4",
     "numpy>=2,<3",
     "pandas>=2.2,<3",
+    "plotly>=6,<8",
     "pydantic>=2.10,<3",
     "pydantic-settings>=2.8,<3",
+    "python-multipart>=0.0.20,<1",
     "scikit-learn>=1.6,<2",
+    "sqlalchemy>=2.0,<2.1",
+    "streamlit>=1.45,<2",
     "structlog>=25.1,<26",
+    "uvicorn>=0.34,<1",
 ]
 
 [project.scripts]
@@ -25,6 +32,7 @@ demon-plus = "demon_plus.cli:main"
 
 [dependency-groups]
 dev = [
+    "httpx2>=2.13.1",
     "mypy>=1.15,<2",
     "pandas-stubs>=2.2,<3",
     "pre-commit>=4.1,<5",
@@ -58,7 +66,7 @@ init_typed = true
 warn_required_dynamic_aliases = true
 
 [[tool.mypy.overrides]]
-module = ["sklearn.*", "catboost.*"]
+module = ["sklearn.*", "catboost.*", "plotly.*"]
 ignore_missing_imports = true
 
 [tool.uv]

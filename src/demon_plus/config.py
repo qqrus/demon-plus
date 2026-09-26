@@ -35,6 +35,9 @@ class Settings(BaseSettings):
     training_stride: int = Field(default=7, ge=1)
     random_seed: int = 42
     mlflow_db: Path = Path("artifacts/mlflow.db")
+    app_db: Path = Path("artifacts/app.db")
+    api_url: str = "http://127.0.0.1:8000"
+    max_upload_bytes: int = Field(default=5_000_000, ge=1)
 
     @model_validator(mode="after")
     def validate_evaluation_dates(self) -> "Settings":
