@@ -95,9 +95,8 @@ def data_drift(panel: pd.DataFrame, cutoff: date, destination: Path) -> DataDrif
         )
         warnings.filterwarnings(
             "ignore",
-            message="invalid escape sequence.*",
+            message="invalid escape sequence",
             category=SyntaxWarning,
-            module=r"evidently\..*",
         )
         from evidently import DataDefinition, Dataset, Report
         from evidently.metrics import ValueDrift
