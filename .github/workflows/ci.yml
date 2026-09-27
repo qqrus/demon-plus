@@ -33,8 +33,36 @@ jobs:
       - name: Check types
         run: uv run --locked mypy
       - name: Test
-        run: uv run --locked pytest
+        run: uv run --locked pytest -W error
       - name: Check installed command
         run: uv run --locked demon-plus check
       - name: Build package
         run: uv build
+  container:
+    name: Container build and startup
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1
+      - run: docker compose config --quiet
+      - run: docker build -t demon-plus:ci .
+      - run: docker run --rm demon-plus:ci demon-plus check
+      - name: API startup without downloaded data
+        run: |
+          docker run -d --name demon-ci -p 127.0.0.1:8000:8000 demon-plus:ci
+          python - <<'PY'
+          import json, time, urllib.request
+          for attempt in range(30):
+              try:
+                  with urllib.request.urlopen("http://127.0.0.1:8000/health") as response:
+                      result = json.load(response)
+                  assert result["status"] == "ok" and result["ready"] is False
+                  break
+              except OSError:
+                  time.sleep(2)
+          else:
+              raise SystemExit("API startup timed out")
+          PY
+      - name: Container logs
+        if: always()
+        run: docker logs demon-ci

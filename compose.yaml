@@ -1,0 +1,50 @@
+name: demon-plus
+x-app: &app
+  image: demon-plus:local
+  env_file:
+    - path: .env
+      required: false
+  environment: &environment
+    DEMON_PLUS_DATA_DIR: /app/data
+    DEMON_PLUS_ARTIFACTS_DIR: /app/artifacts
+    DEMON_PLUS_APP_DB: /app/artifacts/app.db
+    DEMON_PLUS_MLFLOW_DB: /app/artifacts/mlflow.db
+    DEMON_PLUS_API_URL: http://api:8000
+  volumes:
+    - sales:/app/data
+    - artifacts:/app/artifacts
+services:
+  init:
+    <<: *app
+    build: .
+    command: [python, -m, demon_plus.bootstrap]
+  api:
+    <<: *app
+    pull_policy: never
+    depends_on:
+      init:
+        condition: service_completed_successfully
+    ports: ["127.0.0.1:8001:8000"]
+    healthcheck:
+      test: [CMD, python, -c, "import urllib.request,json; assert json.load(urllib.request.urlopen('http://127.0.0.1:8000/health'))['ready']"]
+      interval: 10s
+      timeout: 5s
+      retries: 6
+      start_period: 30s
+    stop_grace_period: 2m
+  ui:
+    <<: *app
+    pull_policy: never
+    command: [streamlit, run, src/demon_plus/ui/app.py, --server.address, 0.0.0.0, --server.port, "8501", --server.headless, "true", --browser.gatherUsageStats, "false"]
+    depends_on:
+      api:
+        condition: service_healthy
+    ports: ["127.0.0.1:8502:8501"]
+    healthcheck:
+      test: [CMD, python, -c, "import urllib.request; urllib.request.urlopen('http://127.0.0.1:8501/_stcore/health')"]
+      interval: 10s
+      timeout: 5s
+      retries: 6
+volumes:
+  sales:
+  artifacts:

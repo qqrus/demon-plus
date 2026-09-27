@@ -26,6 +26,7 @@ dist/
 
 # Datasets, models, experiments, reports and local databases
 /data/
+/sales-update.csv
 /artifacts/
 /mlruns/
 /mlartifacts/
