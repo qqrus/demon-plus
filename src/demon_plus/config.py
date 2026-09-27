@@ -38,6 +38,8 @@ class Settings(BaseSettings):
     app_db: Path = Path("artifacts/app.db")
     api_url: str = "http://127.0.0.1:8000"
     max_upload_bytes: int = Field(default=5_000_000, ge=1)
+    quality_relative_increase: float = Field(default=0.25, ge=0, allow_inf_nan=False)
+    quality_absolute_increase: float = Field(default=5.0, ge=0, allow_inf_nan=False)
 
     @model_validator(mode="after")
     def validate_evaluation_dates(self) -> "Settings":

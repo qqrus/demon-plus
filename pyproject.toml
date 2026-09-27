@@ -10,13 +10,14 @@ readme = "README.md"
 requires-python = ">=3.12,<3.13"
 dependencies = [
     "catboost>=1.2,<2",
+    "evidently>=0.7,<0.8",
     "fastapi>=0.115,<1",
     "httpx>=0.28,<1",
     "matplotlib>=3.9,<4",
     "mlflow>=3,<4",
     "numpy>=2,<3",
     "pandas>=2.2,<3",
-    "plotly>=6,<8",
+    "plotly>=5.24,<6",
     "pydantic>=2.10,<3",
     "pydantic-settings>=2.8,<3",
     "python-multipart>=0.0.20,<1",
@@ -66,9 +67,9 @@ init_typed = true
 warn_required_dynamic_aliases = true
 
 [[tool.mypy.overrides]]
-module = ["sklearn.*", "catboost.*", "plotly.*"]
+module = ["sklearn.*", "catboost.*", "plotly.*", "evidently.*"]
 ignore_missing_imports = true
 
 [tool.uv]
-# pandas 2.3 and MLflow currently emit deprecations with newer transitive versions.
-constraint-dependencies = ["numpy<2.4", "sqlalchemy<2.1"]
+# Compatibility bounds: pandas/MLflow and Evidently's legacy UI dependencies.
+constraint-dependencies = ["numpy<2.4", "sqlalchemy<2.1", "litestar<2.23"]

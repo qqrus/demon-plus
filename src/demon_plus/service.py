@@ -40,6 +40,7 @@ from demon_plus.models.catboost import (
     predict_saved,
     save_model,
 )
+from demon_plus.monitoring.report import MonitoringReport, data_drift, quality_drift
 from demon_plus.storage.store import Store
 
 
@@ -261,6 +262,48 @@ class Service:
 
     def jobs(self) -> list[Job]:
         return [Job.model_validate_json(payload) for payload in self.store.job_payloads()]
+
+    def monitoring(self) -> MonitoringReport:
+        with self.lock:
+            snapshot = self.snapshot()
+            payloads = self.store.forecast_payloads()
+            cache_key = hashlib.sha256(
+                json.dumps(
+                    [
+                        snapshot.dataset_id,
+                        snapshot.model.model_id,
+                        len(payloads),
+                        self.settings.quality_relative_increase,
+                        self.settings.quality_absolute_increase,
+                    ]
+                ).encode()
+            ).hexdigest()
+            cached = self.store.get_state("monitoring:" + cache_key)
+            if cached:
+                return MonitoringReport.model_validate_json(cached)
+            panel = self.panel(snapshot.dataset_id)
+            report_id = uuid4().hex
+            directory = self.settings.artifacts_dir / "monitoring" / report_id
+            drift = data_drift(panel, snapshot.model.training_cutoff, directory / "drift.html")
+            report = MonitoringReport(
+                report_id=report_id,
+                dataset_id=snapshot.dataset_id,
+                model_id=snapshot.model.model_id,
+                as_of=panel.index[-1].date(),
+                data_drift=drift,
+                quality=quality_drift(
+                    [ForecastResponse.model_validate_json(value) for value in payloads],
+                    panel,
+                    self.settings.quality_relative_increase,
+                    self.settings.quality_absolute_increase,
+                ),
+                html_available=(directory / "drift.html").exists(),
+            )
+            directory.mkdir(parents=True, exist_ok=True)
+            (directory / "report.json").write_text(report.model_dump_json(indent=2), "utf-8")
+            self.store.set_state("monitoring:" + cache_key, report.model_dump_json())
+            self.logger.info("monitoring_completed", report_id=report_id, status=drift.status)
+            return report
 
     def job(self, job_id: str) -> Job:
         found = next((job for job in self.jobs() if job.job_id == job_id), None)

@@ -170,6 +170,28 @@ def test_not_ready_is_actionable(tmp_path: Path) -> None:
         assert client.get("/api/v1/status").status_code == 503
 
 
+def test_monitoring_api_cache_and_truth_arrival(service: Service) -> None:
+    with TestClient(create_app(service.settings, service)) as client:
+        first = client.get("/api/v1/monitoring").json()
+        assert first["data_drift"]["status"] == "waiting"
+        assert client.get("/api/v1/monitoring/html").status_code == 404
+        client.post("/api/v1/forecasts", json={"category": "books", "horizon": 7})
+        pending = client.get("/api/v1/monitoring").json()
+        assert pending["report_id"] != first["report_id"]
+        assert pending["quality"][0]["status"] == "waiting"
+        service.import_sales(new_sales(service, 30))
+        measured = client.get("/api/v1/monitoring")
+        assert measured.status_code == 200
+        body = measured.json()
+        assert body["quality"][0]["status"] == "reference_only"
+        assert body["quality"][0]["reference"]["mae"] >= 0
+        assert body["html_available"]
+        assert client.get("/api/v1/monitoring").json() == body
+        assert client.get("/api/v1/monitoring/html").status_code == 200
+        service.settings.quality_absolute_increase = 10
+        assert client.get("/api/v1/monitoring").json()["report_id"] != body["report_id"]
+
+
 def test_ui_forecast_inventory_and_quality(
     service: Service, monkeypatch: pytest.MonkeyPatch
 ) -> None:
@@ -192,3 +214,7 @@ def test_ui_forecast_inventory_and_quality(
         assert not app.exception
         app.sidebar.radio[0].set_value("Качество").run()
         assert not app.exception
+        service.import_sales(new_sales(service))
+        app.run()
+        assert not app.exception
+        assert any("Evidently" in button.label for button in app.button)

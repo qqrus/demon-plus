@@ -36,7 +36,10 @@ def call_api(method: str, path: str, **kwargs: Any) -> Any:
             st.stop()
         return (
             response.content
-            if "text/csv" in response.headers.get("content-type", "")
+            if any(
+                kind in response.headers.get("content-type", "")
+                for kind in ("text/csv", "text/html")
+            )
             else response.json()
         )
     except httpx.HTTPError:
@@ -272,7 +275,64 @@ def show_quality() -> None:
             for row in result[split]["aggregate"]
         ]
         st.dataframe(pd.DataFrame(rows).round(3), hide_index=True, width="stretch")
-    st.info("Автоматический мониторинг data drift и quality drift будет добавлен на этапе 5.")
+    st.divider()
+    st.subheader("Мониторинг новых данных и прогнозов")
+    monitoring = call_api("GET", "/api/v1/monitoring")
+    drift = monitoring["data_drift"]
+    st.caption(f"Факты по {monitoring['as_of']}. Отчёт обновляется при открытии раздела.")
+    if drift["status"] == "warning":
+        st.warning("Обнаружено изменение распределения продаж.")
+    st.info(drift["message"])
+    if drift["columns"]:
+        st.caption(
+            f"История: {drift['reference_start']} — {drift['reference_end']}; "
+            f"новое окно: {drift['current_start']} — {drift['current_end']}"
+        )
+        st.dataframe(pd.DataFrame(drift["columns"]), hide_index=True, width="stretch")
+    if monitoring["html_available"] and st.button("Подготовить отчёт Evidently"):
+        st.download_button(
+            "Скачать HTML",
+            call_api("GET", "/api/v1/monitoring/html"),
+            file_name="drift.html",
+            mime="text/html",
+        )
+    st.markdown("**Ошибка сохранённых прогнозов**")
+    warnings_count = sum(
+        row["status"] == "warning" and row["model_id"] == monitoring["model_id"]
+        for row in monitoring["quality"]
+    )
+    if warnings_count:
+        st.warning(f"У активной модели обнаружено ухудшение качества: {warnings_count} групп.")
+    st.caption(
+        "Сравниваются первое и последнее полные неперекрывающиеся окна одной модели, "
+        "категории и горизонта. Повторные запросы не увеличивают выборку."
+    )
+    if not monitoring["quality"]:
+        st.info("Сначала сохраните прогноз и загрузите фактические продажи за его горизонт.")
+    for row in monitoring["quality"]:
+        with st.expander(f"{row['category']} · {row['horizon']} дней · {row['model_id'][:8]}"):
+            labels = {
+                "waiting": "Ожидаем факты",
+                "reference_only": "Ждём второе полное окно",
+                "undefined": "WAPE не определён: сумма фактов равна нулю",
+                "stable": "Ухудшение выше порога не обнаружено",
+                "warning": "Качество ухудшилось",
+            }
+            if row["status"] == "warning":
+                st.warning(labels[row["status"]])
+            else:
+                st.info(labels[row["status"]])
+            st.write(
+                {
+                    "Полных прогнозов": row["matured"],
+                    "Ожидают факты": row["pending"],
+                    "Первый срез": row["reference_origin"],
+                    "Последний срез": row["current_origin"],
+                    "Порог WAPE, %": row["threshold_wape"],
+                }
+            )
+            if row["reference"]:
+                st.write({"Первое окно": row["reference"], "Последнее окно": row["current"]})
 
 
 def main() -> None:

@@ -8,7 +8,7 @@ from uuid import uuid4
 import structlog
 from fastapi import FastAPI, File, HTTPException, Request, UploadFile
 from fastapi.exceptions import RequestValidationError
-from fastapi.responses import JSONResponse, Response
+from fastapi.responses import FileResponse, JSONResponse, Response
 
 from demon_plus.api.contracts import (
     ActiveModel,
@@ -23,6 +23,7 @@ from demon_plus.api.contracts import (
 from demon_plus.config import Settings
 from demon_plus.errors import DataError
 from demon_plus.logging import configure_logging
+from demon_plus.monitoring.report import MonitoringReport
 from demon_plus.service import Service
 
 
@@ -150,6 +151,22 @@ def create_app(settings: Settings | None = None, service: Service | None = None)
     @app.get("/api/v1/jobs", response_model=list[Job])
     def jobs(request: Request) -> list[Job]:
         return current(request).jobs()
+
+    @app.get("/api/v1/monitoring", response_model=MonitoringReport)
+    def monitoring(request: Request) -> MonitoringReport:
+        return current(request).monitoring()
+
+    @app.get("/api/v1/monitoring/html")
+    def monitoring_html(request: Request) -> FileResponse:
+        instance = current(request)
+        report = instance.monitoring()
+        if not report.html_available:
+            raise HTTPException(404, detail="Недостаточно новых данных для drift-отчёта.")
+        return FileResponse(
+            instance.settings.artifacts_dir / "monitoring" / report.report_id / "drift.html",
+            media_type="text/html",
+            filename="drift.html",
+        )
 
     @app.post("/api/v1/jobs/retrain", response_model=Job, status_code=202)
     def retrain(request: Request) -> Job:

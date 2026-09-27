@@ -126,3 +126,12 @@ class Store:
                 select(self.forecasts.c.payload).where(self.forecasts.c.id == forecast_id)
             ).scalar_one_or_none()
         return str(value) if value is not None else None
+
+    def forecast_payloads(self) -> list[str]:
+        with self.engine.connect() as connection:
+            return [
+                str(value)
+                for value in connection.execute(
+                    select(self.forecasts.c.payload).order_by(self.forecasts.c.created_at)
+                ).scalars()
+            ]
