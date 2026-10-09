@@ -15,7 +15,7 @@ uv run --locked pytest
 
 `uv.lock` фиксирует разрешённые версии зависимостей. `--locked` запрещает незаметно
 обновить lock-файл. Уже добавлены pandas, NumPy, scikit-learn и matplotlib;
-CatBoost и MLflow добавлены на этапе 3; веб-приложение появится на этапе 4.
+CatBoost, MLflow, FastAPI, Streamlit и Evidently также зафиксированы в lock-файле.
 `src-layout` проверяет импорт установленного пакета, а не случайный
 импорт из текущей папки.
 
@@ -41,13 +41,19 @@ src/demon_plus/
   features/       # общие признаки обучения и предсказания
   models/         # baseline, CatBoost, сохранение/загрузка
   evaluation/     # временные срезы, обучение, MLflow, метрики, отчёты
+  api/            # FastAPI и Pydantic-контракты
+  ui/             # Streamlit, HTTP-клиент API
+  inventory/      # остатки, поставки и первый день дефицита
+  monitoring/     # Evidently и оценка сохранённых прогнозов
+  storage/        # SQLite через SQLAlchemy
+  service.py      # версии данных, прогнозы, переобучение
+  bootstrap.py    # подготовка Docker-демо
   py.typed        # пакет предоставляет типы
 tests/            # конфигурация, CLI, данные, прогнозы, сквозной pipeline
 docs/             # решения и план
 ```
 
-`inventory`, `monitoring`, `storage`,
-`api`, `ui` появятся по мере реализации. Нет пустых модулей с обещаниями поведения.
+Streamlit обращается к REST API; бизнес-правила и хранение не зависят от интерфейса.
 
 ## Конфигурация и сообщения
 
